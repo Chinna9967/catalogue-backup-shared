@@ -5,6 +5,12 @@ def configMap = [
     application: "nodeJSVM",
     component: "catalogue"
 ]
-
+env
 // this is .groovy file name and function inside it
+// if not master branch then trigger pipeline
+if( ! env.BRANCH_NAME.equalsignorecase('master')){
 pipelineDecission.decidePipeline(configMap)
+}
+else{
+    echo "master deployment should happen through cr only"
+}
